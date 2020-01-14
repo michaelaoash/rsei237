@@ -1,0 +1,16 @@
+eeo/
+eeo/*
+egrid/
+schools/
+test/
+requests/
+*.zip
+*.out
+*.err
+*.error
+*.csv
+*.script.*
+*.[eo][0-9]+
+*.Rout
+.Rhistory
+*~

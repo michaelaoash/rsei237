@@ -1,0 +1,4 @@
+$ mkfifo --mode=0666 namedPipe
+$ gzip --stdout -d file.gz > namedPipe
+
+LOAD DATA INFILE 'namedPipe' INTO TABLE tableName;

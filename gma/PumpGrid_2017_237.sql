@@ -1,0 +1,33 @@
+-- Load RSEI 2.3.7 Air Microdata 2017
+SET sql_safe_updates=0;
+
+USE ashm_rsei237gma ;
+
+DROP TABLE IF EXISTS cell_2017 ;  
+
+CREATE TABLE  `cell_2017` (
+  `grid` TINYINT DEFAULT NULL,
+  `x` SMALLINT(6) DEFAULT NULL,  
+  `y` SMALLINT(6) DEFAULT NULL,
+  `ReleaseNumber` INT(12) DEFAULT NULL,
+  `ChemicalNumber` SMALLINT(6) DEFAULT NULL,
+  `FacilityNumber` INT(11) DEFAULT NULL,
+  `Media` SMALLINT(4) DEFAULT NULL,
+  `Conc` DOUBLE DEFAULT NULL,
+  `ToxConc` DOUBLE DEFAULT NULL,
+  `Score` DOUBLE DEFAULT NULL,
+  `ScoreCancer` DOUBLE DEFAULT NULL,
+  `ScoreNonCancer` DOUBLE DEFAULT NULL,
+  `Pop` DOUBLE DEFAULT NULL,  
+  KEY `XY` (`grid`,`X`,`Y`),
+  KEY `ReleaseNumber` (`ReleaseNumber`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 MAX_ROWS=1210000000;
+
+ALTER TABLE  `cell_2017` DISABLE KEYS;
+
+LOAD DATA LOCAL INFILE 'micro2017_2017.csv'
+INTO TABLE cell_2017
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+SHOW WARNINGS ;

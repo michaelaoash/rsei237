@@ -1,0 +1,8 @@
+#! /bin/bash
+
+#PBS -l nodes=1:ppn=4,walltime=4:00:00
+#PBS -m ea
+#PBS -N release_ej_01.script
+
+cd ~/rsei237/ej/2017/
+runmsql release_ej_01.sql

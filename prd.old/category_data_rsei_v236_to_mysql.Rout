@@ -1,0 +1,46 @@
+
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(RMySQL)
+Loading required package: DBI
+> library(readr)
+> 
+> category_data_rsei_v236  <- read_csv("category_data_rsei_v236.csv")
+Parsed with column specification:
+cols(
+  ScoreCategory = col_integer(),
+  Category = col_character(),
+  Model = col_integer(),
+  InhaleTox = col_integer()
+)
+> 
+> ## These lines create an R connection to the MySQL database ashm_rsei237
+> ## using the connection parameters in the [rmysql] group of the (default)
+> ## file .my.cnf
+> mydbcon  <-  dbConnect(MySQL(), groups="rmysql", dbname="ashm_rsei237")
+> dbListTables(mydbcon)
+[1] "chemical"   "elements"   "facility"   "media"      "naicstable"
+[6] "offsite"    "releases"   "submission"
+> dbWriteTable(mydbcon, name='category', value=category_data_rsei_v236, overwrite=TRUE, row.names=FALSE)
+[1] TRUE
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  0.525   0.100   3.295 

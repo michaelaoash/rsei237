@@ -1,0 +1,8 @@
+#! /bin/bash
+
+#PBS -l nodes=1:ppn=4,walltime=10:00:00
+#PBS -m ea
+#PBS -N PumpGrid_236_237.script
+
+cd ~/rsei237/gma/
+runmsql PumpGrid_2016_237.sql
